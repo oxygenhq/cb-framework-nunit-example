@@ -3,6 +3,7 @@
 namespace nunit_mobile.Tests.Android
 {
     [TestFixture("test-gallery", "emulator-v11")]
+    [TestFixture("test-gallery", "sony-xperia-5")]
     [Parallelizable(ParallelScope.Fixtures)]
     public class TestGallery : BaseTest
     {
