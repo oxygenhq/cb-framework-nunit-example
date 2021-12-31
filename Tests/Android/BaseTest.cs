@@ -44,7 +44,10 @@ namespace nunit_mobile.Tests.Android
 		[TearDown]
 		public void Cleanup()
 		{
-			driver.Quit();
+			if (driver != null)
+			{
+				driver.Quit();
+			}
 		}
 	}
 }
