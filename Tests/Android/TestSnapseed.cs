@@ -11,8 +11,10 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Open new photo using center + icon"), Category("Open Photo")]
         public void OpenPhotoByIcon()
         {
+            StartStep("this a snapseed step");
             var logo = driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
             logo.Click();
+            EndStep("this a snapseed step");
         }
 
         [Test(Description = "Open new photo using the top-left button"), Category("Open Photo")]

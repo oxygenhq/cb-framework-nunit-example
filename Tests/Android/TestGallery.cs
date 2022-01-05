@@ -12,8 +12,10 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Open the menu"), Category("Menu")]
         public void OpenMoreOptions()
         {
+            StartStep("this a step");
             var logo = driver.FindElementByAccessibilityId("More options");
             logo.Click();
+            EndStep("this a step");
         }
 
         [Test(Description = "Open the menu + MULTIPLE TEST CASES"), Category("Menu")]
