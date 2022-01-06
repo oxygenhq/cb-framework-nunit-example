@@ -8,7 +8,9 @@ namespace nunit_mobile.Tests.Android
     {
         public TestSnapseed(string application, string device) : base(application, device) { }
 
-        [Test(Description = "Open new photo using center + icon"), Category("Open Photo")]
+        [Test(Description = "Open new photo using center + icon"), Category("Open Photo"), Order(1)]
+        [TestCase("paramA", Description = "Open new photo using center + icon with paramA"), Category("Open Photo")]
+        [TestCase("paramB", Description = "Open new photo using center + icon with paramB"), Category("Open Photo")]
         public void OpenPhotoByIcon()
         {
             StartStep("this a snapseed step");
