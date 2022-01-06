@@ -33,10 +33,21 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Failing test"), Category("Open Photo")]
         public void FailingTest()
         {
-            StartStep("some step");
+            StartStep("empty step");
+            Console.Out.WriteLine("This is an empty step");
+            EndStep("empty step");
+
+            StartStep("nested step - outer");
+            Console.Out.WriteLine("This is an outer nested step");
+            StartStep("nested step - inner");
+            Console.Out.WriteLine("This is an inner nested step");
+            EndStep("nested step - inner");
+            EndStep("nested step - outer");
+
+            StartStep("failing step");
             var logo = _driver.FindElementByAccessibilityId("doesnt exist");
             logo.Click();
-            EndStep("some step");
+            EndStep("failing step");
         }
     }
 }
