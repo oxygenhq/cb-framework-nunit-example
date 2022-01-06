@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace nunit_mobile.Tests.Android
 {
@@ -11,8 +12,9 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Open new photo using center + icon"), Category("Open Photo"), Order(1)]
         [TestCase("paramA", Description = "Open new photo using center + icon with paramA"), Category("Open Photo")]
         [TestCase("paramB", Description = "Open new photo using center + icon with paramB"), Category("Open Photo")]
-        public void OpenPhotoByIcon()
+        public void OpenPhotoByIcon(string param)
         {
+            Console.Out.WriteLine("parameter: " + param);
             StartStep("this a snapseed step");
             var logo = driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
             logo.Click();

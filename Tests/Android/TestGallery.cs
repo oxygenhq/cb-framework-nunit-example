@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace nunit_mobile.Tests.Android
 {
@@ -21,8 +22,9 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Open the menu + MULTIPLE TEST CASES"), Category("Menu")]
         [TestCase("param1", Description = "OpenMoreOptions2 with param1"), Category("Menu")]
         [TestCase("param2", Description = "OpenMoreOptions2 with param2"), Category("Menu")]
-        public void OpenMoreOptions2()
+        public void OpenMoreOptions2(string param)
         {
+            Console.Out.WriteLine("parameter: " + param);
             var logo = driver.FindElementByAccessibilityId("More options");
             logo.Click();
         }
