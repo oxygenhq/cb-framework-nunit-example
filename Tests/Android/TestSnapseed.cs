@@ -16,7 +16,7 @@ namespace nunit_mobile.Tests.Android
         {
             Console.Out.WriteLine("parameter: " + param);
             StartStep("this a snapseed step");
-            var logo = driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
+            var logo = _driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
             logo.Click();
             EndStep("this a snapseed step");
         }
@@ -24,8 +24,19 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Open new photo using the top-left button"), Category("Open Photo")]
         public void OpenPhotoByButton()
         {
-            var logo = driver.FindElementByAccessibilityId("Open photo");
+            StartStep("open photo step");
+            var logo = _driver.FindElementByAccessibilityId("Open photo");
             logo.Click();
+            EndStep("open photo step");
+        }
+
+        [Test(Description = "Failing test"), Category("Open Photo")]
+        public void FailingTest()
+        {
+            StartStep("some step");
+            var logo = _driver.FindElementByAccessibilityId("doesnt exist");
+            logo.Click();
+            EndStep("some step");
         }
     }
 }

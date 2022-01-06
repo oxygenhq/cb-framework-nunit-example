@@ -14,7 +14,7 @@ namespace nunit_mobile.Tests.Android
         public void OpenMoreOptions()
         {
             StartStep("this a step");
-            var logo = driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementByAccessibilityId("More options");
             logo.Click();
             EndStep("this a step");
         }
@@ -25,21 +25,21 @@ namespace nunit_mobile.Tests.Android
         public void OpenMoreOptions2(string param)
         {
             Console.Out.WriteLine("parameter: " + param);
-            var logo = driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementByAccessibilityId("More options");
             logo.Click();
         }
 
         [Test(Description = "Ordered tests 1"), Category("Ordered"), Order(1)]
         public void OpenMoreOptions3()
         {
-            var logo = driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementByAccessibilityId("More options");
             logo.Click();
         }
 
         [Test(Description = "Ordered tests 2"), Category("Ordered"), Order(2)]
         public void OpenMoreOptions4()
         {
-            var logo = driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementByAccessibilityId("More options");
             logo.Click();
         }
     }

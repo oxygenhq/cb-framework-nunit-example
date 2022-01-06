@@ -9,9 +9,8 @@ using System.Diagnostics;
 
 namespace nunit_mobile.Tests.Android
 {
-	public class BaseTest : CBTest
+    public class BaseTest : CBTest
     {
-		protected AndroidDriver<AndroidElement> driver;
 		protected string application;
 		protected string device;
 
@@ -44,7 +43,7 @@ namespace nunit_mobile.Tests.Android
 				}
 
 				Uri appiumUri = new Uri(ConfigurationManager.AppSettings["appiumUrl"]);
-				driver = new AndroidDriver<AndroidElement>(appiumUri, options);
+				_driver = new AndroidDriver<AppiumWebElement>(appiumUri, options);
 			} 
 			else
             {
@@ -58,16 +57,16 @@ namespace nunit_mobile.Tests.Android
 				}
 
 				Uri appiumUri = new Uri(ConfigurationManager.AppSettings["appiumUrl"]);
-				driver = new AndroidDriver<AndroidElement>(appiumUri, options);
+				_driver = new AndroidDriver<AppiumWebElement>(appiumUri, options);
 			}
 		}
 
 		[OneTimeTearDown]
 		public void Cleanup()
 		{
-			if (driver != null)
+			if (_driver != null)
 			{
-				driver.Quit();
+				_driver.Quit();
 			}
 		}
 	}
