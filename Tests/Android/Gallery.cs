@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium.Appium;
 using System;
 
 namespace nunit_mobile.Tests.Android
@@ -17,7 +18,7 @@ namespace nunit_mobile.Tests.Android
         {
             Console.Out.WriteLine("parameter: " + param);
             StartStep("this a snapseed step");
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElement(MobileBy.AccessibilityId("More options"));
             logo.Click();
             EndStep("this a snapseed step");
         }
@@ -26,7 +27,7 @@ namespace nunit_mobile.Tests.Android
         public void OpenPhotoByButton()
         {
             StartStep("open photo step");
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElement(MobileBy.AccessibilityId("More options"));
             logo.Click();
             EndStep("open photo step");
         }
@@ -46,7 +47,7 @@ namespace nunit_mobile.Tests.Android
             EndStep("nested step - outer");
 
             StartStep("failing step");
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElement(MobileBy.AccessibilityId("More options"));
             logo.Click();
             EndStep("failing step");
         }

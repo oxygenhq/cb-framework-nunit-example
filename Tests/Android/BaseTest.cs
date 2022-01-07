@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Support.Events;
 using System;
 using System.Collections.Specialized;
 using System.Configuration;
@@ -43,7 +44,7 @@ namespace nunit_mobile.Tests.Android
 				}
 
 				Uri appiumUri = new Uri(ConfigurationManager.AppSettings["appiumUrl"]);
-				_driver = new AndroidDriver<AppiumWebElement>(appiumUri, options);
+				_driver = new EventFiringWebDriver(new AndroidDriver<AppiumWebElement>(appiumUri, options));
 			} 
 			else
             {
@@ -57,7 +58,8 @@ namespace nunit_mobile.Tests.Android
 				}
 
 				Uri appiumUri = new Uri(ConfigurationManager.AppSettings["appiumUrl"]);
-				_driver = new AndroidDriver<AppiumWebElement>(appiumUri, options);
+				_driver = new EventFiringWebDriver(new AndroidDriver<AppiumWebElement>(appiumUri, options));
+				SubscribeToEvents();
 			}
 		}
 
