@@ -20,11 +20,23 @@ namespace nunit_mobile.Tests.Android
         }
 
         [Test(Description = "Open the menu + MULTIPLE TEST CASES"), Category("Menu")]
-        [TestCase("param1", Description = "OpenMoreOptions2 with param1"), Category("Menu")]
-        [TestCase("param2", Description = "OpenMoreOptions2 with param2"), Category("Menu")]
+        [TestCase("param1", Description = "OpenMoreOptions2 with param1")]
+        [TestCase("param2", Description = "OpenMoreOptions2 with param2", Category = "testcase cat")]
         public void OpenMoreOptions2(string param)
         {
             Console.Out.WriteLine("parameter: " + param);
+            var logo = _driver.FindElementByAccessibilityId("More options");
+            logo.Click();
+        }
+
+        static object[] Source()
+        {
+            return new object[0];
+        }
+        [Test(Description = "Test - testcasesource"), Category("Menu")]
+        [TestCaseSource("Source", Category = "test case source category")]
+        public void TestCaseSource(object[] Source)
+        {
             var logo = _driver.FindElementByAccessibilityId("More options");
             logo.Click();
         }
