@@ -3,11 +3,12 @@ using System;
 
 namespace nunit_mobile.Tests.Android
 {
-    [TestFixture("test-snapseed", "sony-xperia-5")]
+    [TestFixture("test-gallery", "emulator-v11")]
+    [TestFixture("test-gallery", "sony-xperia-5")]
     [Parallelizable(ParallelScope.Fixtures)]
-    public class TestSnapseed : BaseTest
+    public class Gallery : BaseTest
     {
-        public TestSnapseed(string application, string device) : base(application, device) { }
+        public Gallery(string application, string device) : base(application, device) { }
 
         [Test(Description = "Open new photo using center + icon"), Category("Open Photo"), Order(1)]
         [TestCase("paramA", Description = "Open new photo using center + icon with paramA"), Category("Open Photo")]
@@ -16,7 +17,7 @@ namespace nunit_mobile.Tests.Android
         {
             Console.Out.WriteLine("parameter: " + param);
             StartStep("this a snapseed step");
-            var logo = _driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
+            var logo = _driver.FindElementByAccessibilityId("More options");
             logo.Click();
             EndStep("this a snapseed step");
         }
@@ -25,7 +26,7 @@ namespace nunit_mobile.Tests.Android
         public void OpenPhotoByButton()
         {
             StartStep("open photo step");
-            var logo = _driver.FindElementByAccessibilityId("Open photo");
+            var logo = _driver.FindElementByAccessibilityId("More options");
             logo.Click();
             EndStep("open photo step");
         }
@@ -45,7 +46,7 @@ namespace nunit_mobile.Tests.Android
             EndStep("nested step - outer");
 
             StartStep("failing step");
-            var logo = _driver.FindElementByAccessibilityId("doesnt exist");
+            var logo = _driver.FindElementByAccessibilityId("More options");
             logo.Click();
             EndStep("failing step");
         }

@@ -69,8 +69,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Android\BaseTest.cs" />
-    <Compile Include="Tests\Android\TestGallery.cs" />
-    <Compile Include="Tests\Android\TestSnapseed.cs" />
+    <Compile Include="Tests\Android\Snapseed.cs" />
+    <Compile Include="Tests\Android\Gallery.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

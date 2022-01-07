@@ -3,18 +3,17 @@ using System;
 
 namespace nunit_mobile.Tests.Android
 {
-    [TestFixture("test-gallery", "emulator-v11")]
-    [TestFixture("test-gallery", "sony-xperia-5")]
+    [TestFixture("test-snapseed", "sony-xperia-5")]
     [Parallelizable(ParallelScope.Fixtures)]
-    public class TestGallery : BaseTest
+    public class Snapseed : BaseTest
     {
-        public TestGallery(string application, string device) : base(application, device) { }
+        public Snapseed(string application, string device) : base(application, device) { }
 
         [Test(Description = "Test"), Category("Menu")]
-        public void OpenMoreOptions()
+        public void Test1()
         {
             StartStep("this a step");
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
             logo.Click();
             EndStep("this a step");
         }
@@ -22,10 +21,10 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Test: Test + 2 TestCase single param"), Category("Menu")]
         [TestCase("param1", Description = "TestCase: Test + 2 TestCase single param: 1")]
         [TestCase("param2", Description = "TestCase: Test + 2 TestCase single param and cat: 2", Category = "testcase cat")]
-        public void OpenMoreOptions2(string param)
+        public void Test2(string param)
         {
             Console.Out.WriteLine("parameter: " + param);
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
             logo.Click();
         }
 
@@ -37,9 +36,9 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Test: Test + 2 TestCase mult params"), Category("Menu")]
         [TestCase("param1", 4, Test_Type.Identified, Description = "TestCase: Test + 2 TestCase mult params: 1")]
         [TestCase("param2", 6, Test_Type.NotIdentified, Description = "TestCase: Test + 2 TestCase mult params: 2")]
-        public void MultParams(string param, int param2, Test_Type testType)
+        public void Test3(string param, int param2, Test_Type testType)
         {
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
             logo.Click();
         }
 
@@ -49,23 +48,30 @@ namespace nunit_mobile.Tests.Android
         }
         [Test(Description = "Test: Test + TestCaseSource"), Category("test case source main cat")]
         [TestCaseSource("Source", Category = "test case source category")]
-        public void TestCaseSource(object[] Source)
+        public void Test4(object[] Source)
         {
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
             logo.Click();
         }
 
         [Test(Description = "Test ordered 1"), Category("Ordered"), Order(1)]
-        public void OpenMoreOptions3()
+        public void Test5()
         {
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
             logo.Click();
         }
 
         [Test(Description = "Test ordered 2"), Category("Ordered"), Order(2)]
-        public void OpenMoreOptions4()
+        public void Test6()
         {
-            var logo = _driver.FindElementByAccessibilityId("More options");
+            var logo = _driver.FindElementById("com.niksoftware.snapseed:id/logo_view");
+            logo.Click();
+        }
+
+        [Test(Description = "Test Failing"), Category("Ordered"), Order(2)]
+        public void Test7()
+        {
+            var logo = _driver.FindElementById("doesnt exist");
             logo.Click();
         }
     }
