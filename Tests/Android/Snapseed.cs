@@ -103,5 +103,15 @@ namespace nunit_mobile.Tests.Android
             logo.Click();
             EndStep("click step");
         }
+
+        [Test]
+        [TestCase("paramA", 4, Test_Type.Identified)]
+        [TestCase("paramB", 6, Test_Type.NotIdentified)]
+        public void TestNoDescription(string param, int param2, Test_Type testType)
+        {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
+            var logo = _driver.FindElement(MobileBy.Id("com.niksoftware.snapseed:id/logo_view"));
+            logo.Click();
+        }
     }
 }
