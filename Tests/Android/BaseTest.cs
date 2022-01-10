@@ -15,6 +15,11 @@ namespace nunit_mobile.Tests.Android
 		protected string application;
 		protected string device;
 
+		// for CB when no TestFixture-s defined
+		public BaseTest()
+		{
+		}
+
 		public BaseTest(string application, string device)
 		{
 			this.application = application;
@@ -50,12 +55,10 @@ namespace nunit_mobile.Tests.Android
             {
 				var options = GetDeviceOptions();
 
-				// FIXME:
-				NameValueCollection caps = ConfigurationManager.GetSection("capabilities/android/" + application) as NameValueCollection;
-				foreach (string key in caps.AllKeys)
-				{
-					options.AddAdditionalCapability(key, caps[key]);
-				}
+				options.AddAdditionalCapability("noReset", "true");
+				options.AddAdditionalCapability("automationName", "uiautomator2");
+				options.AddAdditionalCapability("appPackage", "com.niksoftware.snapseed");
+				options.AddAdditionalCapability("appActivity", "com.google.android.apps.snapseed.activities.edit.MainActivity");
 
 				Uri appiumUri = new Uri(ConfigurationManager.AppSettings["appiumUrl"]);
 				_driver = new EventFiringWebDriver(new AndroidDriver<AppiumWebElement>(appiumUri, options));
