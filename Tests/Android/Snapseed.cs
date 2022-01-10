@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using System;
+using System.Reflection;
 
 namespace nunit_mobile.Tests.Android
 {
@@ -13,6 +14,7 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Test"), Category("Menu")]
         public void Test1()
         {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             StartStep("this a step");
             var logo = _driver.FindElement(MobileBy.Id("com.niksoftware.snapseed:id/logo_view"));
             logo.Click();
@@ -24,7 +26,7 @@ namespace nunit_mobile.Tests.Android
         [TestCase("param2", Description = "TestCase: Test + 2 TestCase single param and cat: 2", Category = "testcase cat")]
         public void Test2(string param)
         {
-            Console.Out.WriteLine("parameter: " + param);
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             var logo = _driver.FindElement(MobileBy.Id("com.niksoftware.snapseed:id/logo_view"));
             logo.Click();
         }
@@ -39,6 +41,7 @@ namespace nunit_mobile.Tests.Android
         [TestCase("param2", 6, Test_Type.NotIdentified, Description = "TestCase: Test + 2 TestCase mult params: 2")]
         public void Test3(string param, int param2, Test_Type testType)
         {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             var logo = _driver.FindElement(MobileBy.Id("com.niksoftware.snapseed:id/logo_view"));
             logo.Click();
         }
@@ -51,6 +54,7 @@ namespace nunit_mobile.Tests.Android
         [TestCaseSource("Source", Category = "test case source category")]
         public void Test4(object[] Source)
         {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             var logo = _driver.FindElement(MobileBy.Id("com.niksoftware.snapseed:id/logo_view"));
             logo.Click();
         }
@@ -58,6 +62,7 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Test ordered 1"), Category("Ordered"), Order(1)]
         public void Test5()
         {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             var logo = _driver.FindElement(MobileBy.Id("com.niksoftware.snapseed:id/logo_view"));
             logo.Click();
         }
@@ -65,6 +70,7 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Test ordered 2"), Category("Ordered"), Order(2)]
         public void Test6()
         {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             var logo = _driver.FindElement(MobileBy.Id("com.niksoftware.snapseed:id/logo_view"));
             logo.Click();
         }
@@ -72,8 +78,30 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Test Failing"), Category("Ordered"), Order(2)]
         public void Test7()
         {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             var logo = _driver.FindElement(MobileBy.Id("doesnt exist"));
             logo.Click();
+        }
+
+        [Test(Description = "Nested steps")]
+        public void Test8()
+        {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
+            StartStep("empty step");
+            Console.Out.WriteLine("This is an empty step");
+            EndStep("empty step");
+
+            StartStep("nested step - outer");
+            Console.Out.WriteLine("This is an outer nested step");
+            StartStep("nested step - inner");
+            Console.Out.WriteLine("This is an inner nested step");
+            EndStep("nested step - inner");
+            EndStep("nested step - outer");
+
+            StartStep("click step");
+            var logo = _driver.FindElement(MobileBy.Id("com.niksoftware.snapseed:id/logo_view"));
+            logo.Click();
+            EndStep("click step");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using System;
+using System.Reflection;
 
 namespace nunit_mobile.Tests.Android
 {
@@ -16,7 +17,7 @@ namespace nunit_mobile.Tests.Android
         [TestCase("paramB", Description = "Open new photo using center + icon with paramB"), Category("Open Photo")]
         public void OpenPhotoByIcon(string param)
         {
-            Console.Out.WriteLine("parameter: " + param);
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             StartStep("this a snapseed step");
             var logo = _driver.FindElement(MobileBy.AccessibilityId("More options"));
             logo.Click();
@@ -26,6 +27,7 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Open new photo using the top-left button"), Category("Open Photo")]
         public void OpenPhotoByButton()
         {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             StartStep("open photo step");
             var logo = _driver.FindElement(MobileBy.AccessibilityId("More options"));
             logo.Click();
@@ -35,6 +37,7 @@ namespace nunit_mobile.Tests.Android
         [Test(Description = "Failing test"), Category("Open Photo")]
         public void FailingTest()
         {
+            Console.Out.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
             StartStep("empty step");
             Console.Out.WriteLine("This is an empty step");
             EndStep("empty step");
