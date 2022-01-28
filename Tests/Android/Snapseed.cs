@@ -16,6 +16,8 @@ namespace nunit_mobile.Tests.Android
         public Snapseed(string application, string device) : base(application, device) { }
 
         [Test(Description = "Test"), Category("Menu")]
+        [Property("Foo", "Bar")]
+        [Property("NotFoo", "Bar")]
         public void Test1()
         {
             TestContext.Progress.WriteLine("Executing method: " + MethodBase.GetCurrentMethod().Name);
